@@ -11,20 +11,16 @@
 
 <body>
 
-    <h1>Jugadores</h1>
+   <h1>{$equipo -> nombre_equipo}</h1>
+   <span>Titulos: {$equipo -> cant_titulos}</span>
+   <span>Liga: {$equipo -> liga}</span>
 
-    <ul>
-        <li>Jugador 1</li>
-        <li>Jugador 2</li>
-        <li>Jugador 3</li>
-    </ul>
-
-    <form action="createJugador" method="post">
-        <input type="text" name="nombre" id="nombre">
-        <input type="number" name="nro_camiseta" id="nro_camiseta">
-        <input type="text" name="rol" id="rol">
-        <input type="submit" value="Guardar">
-    </form>
+   <h2>Jugadores</h2>
+   <ul>
+        {foreach from=$jugadores item=$jugador}
+            <li>{$jugador -> nombre_jugador}</li>
+        {/foreach}
+   </ul>
 
 </body>
 

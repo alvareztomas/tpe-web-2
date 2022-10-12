@@ -23,6 +23,9 @@
         case 'team-list':
             $jugadoresController -> showEquipos();
             break;
+        case 'equipos':
+            $jugadoresController -> showEquipoInfo($params[1]);
+            break;
         default:
             echo('404 not found');
             break;

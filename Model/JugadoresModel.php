@@ -20,6 +20,13 @@
             return $jugador;
         }
 
+        function getJugadorEquipo($id_equipo_fk){
+            $sentence = $this -> db -> prepare('SELECT * FROM jugadores WHERE id_equipo_fk = ?');
+            $sentence -> execute([$id_equipo_fk]);
+            $jugadores = $sentence -> fetchAll(PDO::FETCH_OBJ);
+            return $jugadores;
+        }
+
         function updateJugador($nombre, $nro, $rol, $id_equipo, $id_jugador){
             $sentence = $this -> db -> prepare('UPDATE jugadores SET nombre_jugador = ?,nro_camiseta = ?, rol = ?, id_equipo_fk = ? WHERE id_jugador = ?');
             $sentence -> execute([$nombre, $nro, $rol, $id_equipo, $id_jugador]);

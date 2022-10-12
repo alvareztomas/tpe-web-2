@@ -8,8 +8,14 @@ class EquiposView{
         $this -> smarty = new Smarty();
     }
 
-    function showEquipos($equipos){
+    function renderEquipos($equipos){
         $this -> smarty -> assign('equipos', $equipos);
         $this -> smarty -> display('./templates/equipos.tpl');
+    }
+
+    function renderEquipoInfo($equipo, $jugadores){
+        $this -> smarty -> assign('equipo', $equipo);
+        $this -> smarty -> assign('jugadores', $jugadores);
+        $this -> smarty -> display('./templates/equiposInfo.tpl');
     }
 };

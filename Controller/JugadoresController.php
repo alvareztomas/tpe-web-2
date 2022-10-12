@@ -20,7 +20,10 @@
         function showHome(){
             $jugadores = $this -> jugadoresModel -> getJugadores();
             $equipos = $this -> equiposModel -> getEquipos();
-            $this -> jugadoresView -> showHome($jugadores, $equipos);
+            foreach ($equipos as $equipo) {
+                $mapEquipos[$equipo -> id_equipo] = "$equipo->nombre_equipo";
+            };
+            $this -> jugadoresView -> renderHome($jugadores, $equipos, $mapEquipos);
         }
 
         function createJugador() {
@@ -30,6 +33,12 @@
 
         function showEquipos(){
             $equipos = $this -> equiposModel -> getEquipos();
-            $this -> equiposView -> showEquipos($equipos);
+            $this -> equiposView -> renderEquipos($equipos);
+        }
+
+        function showEquipoInfo($id){
+            $equipo = $this -> equiposModel -> getEquipo($id);
+            $jugadores = $this -> jugadoresModel -> getJugadorEquipo($id);
+            $this -> equiposView -> renderEquipoInfo($equipo, $jugadores);
         }
     };
