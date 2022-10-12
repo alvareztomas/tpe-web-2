@@ -1,9 +1,6 @@
 {include file = 'header.tpl'}
 
-<h1>Jugadores</h1>
-<a href="team-list">Ver lista de equipos</a>
-
-<table class="table table-dark table-hover">
+<table class="table table-secondary table-hover">
     <thead>
         <th>Nombre</th>
         <th>Numero</th>

@@ -41,4 +41,14 @@
             $jugadores = $this -> jugadoresModel -> getJugadorEquipo($id);
             $this -> equiposView -> renderEquipoInfo($equipo, $jugadores);
         }
+
+        function showJugadores(){
+            $jugadores = $this -> jugadoresModel -> getJugadores();
+            $this -> jugadoresView -> renderJugadores($jugadores);
+        }
+
+        function showJugadorInfo($id){
+            $jugador = $this -> jugadoresModel -> getJugador($id);
+            $this -> jugadoresView -> renderJugadorInfo($jugador);
+        }
     };

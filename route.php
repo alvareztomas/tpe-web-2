@@ -20,11 +20,17 @@
         case 'create-jugador':
             $jugadoresController -> createJugador();
             break;
-        case 'team-list':
+        case 'teams-list':
             $jugadoresController -> showEquipos();
             break;
         case 'equipos':
             $jugadoresController -> showEquipoInfo($params[1]);
+            break;
+        case 'players-list':
+            $jugadoresController -> showJugadores();
+            break;
+        case 'jugadores':
+            $jugadoresController -> showJugadorInfo($params[1]);
             break;
         default:
             echo('404 not found');

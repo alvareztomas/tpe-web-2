@@ -18,4 +18,14 @@ class JugadoresView{
     function relocateHome(){
         header("Location:".BASE_URL."home");
     }
+
+    function renderJugadores($jugadores){
+        $this -> smarty -> assign('jugadores', $jugadores);
+        $this -> smarty -> display('jugadores.tpl');
+    }
+
+    function renderJugadorInfo($jugador){
+        $this -> smarty -> assign('jugador', $jugador);
+        $this -> smarty -> display('jugadorInfo.tpl');
+    }
 }

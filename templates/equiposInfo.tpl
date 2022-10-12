@@ -1,14 +1,21 @@
 {include file = 'header.tpl'}
 
-<h1>{$equipo -> nombre_equipo}</h1>
-<span>Titulos: {$equipo -> cant_titulos}</span>
-<span>Liga: {$equipo -> liga}</span>
-
-<h2>Jugadores</h2>
-<ul>
-    {foreach from=$jugadores item=$jugador}
-        <li>{$jugador -> nombre_jugador}</li>
-    {/foreach}
-</ul>
+<div class="d-flex justify-content-center">
+    <div class="card mt-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{$equipo -> nombre_equipo}</h5>
+            <i>Titulos: {$equipo -> cant_titulos} - Liga: {$equipo -> liga}</i>
+        </div>
+        <h6 class="ms-3">Jugadores:</h6>
+        <ul class="list-group list-group-flush">
+            {foreach from=$jugadores item=$jugador}
+                <a href="jugadores/{$jugador -> id_jugador}" class="list-group-item list-group-item-action">{$jugador -> nombre_jugador}</a>
+            {/foreach}
+        </ul>
+        <div class="card-body">
+            <a href="home" class="card-link">Go home</a>
+        </div>
+    </div>
+</div>
 
 {include file = 'footer.tpl'}

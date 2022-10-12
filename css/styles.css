@@ -1,0 +1,10 @@
+.logo{
+    width: 45px;
+    height: 45px;
+    margin-left: 10px;
+}
+
+.lista-equipos{
+    min-width: 400px;
+    margin-top: 10px;
+}
