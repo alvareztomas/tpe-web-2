@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="'.BASE_URL.'" >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+
+<body>
+
+    <h1>Jugadores</h1>
+
+    <ul>
+        <li>Jugador 1</li>
+        <li>Jugador 2</li>
+        <li>Jugador 3</li>
+    </ul>
+
+    <form action="createJugador" method="post">
+        <input type="text" name="nombre" id="nombre">
+        <input type="number" name="nro_camiseta" id="nro_camiseta">
+        <input type="text" name="rol" id="rol">
+        <input type="submit" value="Guardar">
+    </form>
+
+</body>
+
+</html>
