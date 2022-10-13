@@ -1,7 +1,9 @@
 <?php
     require_once 'Controller/JugadoresController.php';
+    require_once 'Controller/LoginController.php';
 
     $jugadoresController = new JugadoresController();
+    $loginController = new LoginController();
 
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -32,7 +34,16 @@
         case 'jugadores':
             $jugadoresController -> showJugadorInfo($params[1]);
             break;
+        case 'login':
+            $loginController -> showLogin();
+            break;
+        case 'logout':
+            $loginController -> logout();
+            break;
+        case 'verify':
+            $loginController -> verifyLogin();
+            break;
         default:
-            echo('404 not found');
+            echo('404 Page not found!');
             break;
     }

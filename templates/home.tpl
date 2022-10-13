@@ -19,7 +19,7 @@
     </tbody>
 </table>
 
-<form action="create-jugador" method="post">
+{* <form action="create-jugador" method="post">
     <input type="text" name="nombre" id="nombre">
     <input type="number" name="nro_camiseta" id="nro_camiseta">
     <input type="text" name="rol" id="rol">
@@ -29,6 +29,6 @@
         {/foreach}
     </select>
     <input type="submit" value="Guardar">
-</form>
+</form> *}
 
 {include file = 'footer.tpl'}

@@ -27,6 +27,7 @@
               <a class="nav-link" href="players-list">Jugadores</a>
             </li>
           </ul>
+          <a href="login" class="btn btn-outline-light me-4">Log In</a>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>

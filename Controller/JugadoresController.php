@@ -3,21 +3,25 @@
     require_once './Model/EquiposModel.php';
     require_once './View/JugadoresView.php';
     require_once './View/EquiposView.php';
+    require_once './Helpers/AuthHelper.php';
 
     class JugadoresController{
         private $jugadoresModel;
         private $equiposModel;
         private $jugadoresView;
         private $equiposView;
+        private $authHelper;
 
         function __construct(){
             $this -> jugadoresModel = new JugadoresModel();
             $this -> equiposModel = new EquiposModel();
             $this -> jugadoresView = new JugadoresView();
             $this -> equiposView = new EquiposView();
+            $this -> authHelper = new AuthHelper();
         }
 
         function showHome(){
+            // $this -> authHelper -> checkLoggedIn();
             $jugadores = $this -> jugadoresModel -> getJugadores();
             $equipos = $this -> equiposModel -> getEquipos();
             foreach ($equipos as $equipo) {
