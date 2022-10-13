@@ -8,6 +8,7 @@
             <li class="list-group-item">Nombre: {$jugador -> nombre_jugador}</li>
             <li class="list-group-item">Camiseta: {$jugador -> nro_camiseta}</li>
             <li class="list-group-item">Posicion: {$jugador -> rol}</li>
+            <li class="list-group-item">Equipo: {$equipo -> nombre_equipo}</li>
         </ul>
     </div>
 </div>

@@ -6,6 +6,9 @@
         <th>Numero</th>
         <th>Posicion</th>
         <th>Equipo</th>
+        {if $session}    
+            <th>Accion</th>
+        {/if}
     </thead>
     <tbody>
         {foreach from=$jugadores  item=$jugador}
@@ -14,21 +17,12 @@
                 <td>{$jugador -> nro_camiseta}</td>
                 <td>{$jugador -> rol}</td>
                 <td><a href="equipos/{$jugador -> id_equipo_fk}">{$mapEquipos[$jugador -> id_equipo_fk]}</a></td>
+                {if $session} 
+                    <td><a class="btn btn-danger" href="delete/{$jugador -> id_jugador}">Borrar</a></td>
+                {/if}
             </tr>
         {/foreach}
     </tbody>
 </table>
-
-{* <form action="create-jugador" method="post">
-    <input type="text" name="nombre" id="nombre">
-    <input type="number" name="nro_camiseta" id="nro_camiseta">
-    <input type="text" name="rol" id="rol">
-    <select name="equipos" id="equipos">
-        {foreach from=$equipos  item=$equipo} 
-            <option value="{$equipo -> id_equipo}">{$equipo -> nombre_equipo}</option>
-        {/foreach}
-    </select>
-    <input type="submit" value="Guardar">
-</form> *}
 
 {include file = 'footer.tpl'}

@@ -9,7 +9,16 @@
             session_start();
             if(!isset($_SESSION["email"])){
                 header("Location:".BASE_URL."login");
+                die();
             }
+        }
+
+        // Retorna la variable $_SESSION["email"] para renderizar condicionalmente en los templates
+        function isLoggedIn(){ 
+            session_start();
+            if(isset($_SESSION["email"])){
+                return $_SESSION["email"];
+            }else return null;
         }
 
         function logout(){

@@ -22,6 +22,9 @@
         case 'create-jugador':
             $jugadoresController -> createJugador();
             break;
+        case 'update-jugador':
+            $jugadoresController -> updateJugador();
+            break;
         case 'teams-list':
             $jugadoresController -> showEquipos();
             break;
@@ -42,6 +45,9 @@
             break;
         case 'verify':
             $loginController -> verifyLogin();
+            break;
+        case 'delete':
+            $jugadoresController -> deleteJugador($params[1]);
             break;
         default:
             echo('404 Page not found!');

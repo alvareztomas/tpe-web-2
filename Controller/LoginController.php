@@ -15,28 +15,33 @@
         }
 
         function showLogin(){
-            $this -> view -> renderLogin();
+            $session = $this -> authHelper -> isLoggedIn();
+            $this -> view -> renderLogin($session);
         }
 
         function logout(){
             $this -> authHelper -> logout();
-            $this -> view -> renderLogin("Sesion finalizada");
+            $session = $this -> authHelper -> isLoggedIn();
+            $this -> view -> renderLogin($session, "Sesion finalizada");
         }
 
         function verifyLogin(){
-            if(!empty($_POST['email']) && !empty($_POST['password'])){
+            $session = $this -> authHelper -> isLoggedIn(); // Previene que se desloguee si escribe /verify en la URL
+            if(!empty($_POST['email']) && !empty($_POST['password']) && !$session){
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
                 $user = $this -> model -> getUser($email);
-
-                if($user && password_verify($password, $user->password)){
+                // password_verify($password, $user->password)
+                if($user && $password == $user->password){
                     session_start();
                     $_SESSION["email"] = $email;
                     $this -> view -> renderHome();
                 }else{
                     $this -> view -> renderLogin("Acceso denegado");
                 }
+            }else{
+                $this -> view -> renderHome();
             }
         }
     };

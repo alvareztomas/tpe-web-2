@@ -8,8 +8,9 @@
             $this -> smarty = new Smarty();
         }
 
-        function renderLogin($error = ""){
+        function renderLogin($session, $error = ""){
             $this -> smarty -> assign('error', $error);
+            $this -> smarty -> assign('session', $session);
             $this -> smarty -> display('./templates/login.tpl');
         }
 

@@ -21,38 +21,75 @@
         }
 
         function showHome(){
-            // $this -> authHelper -> checkLoggedIn();
             $jugadores = $this -> jugadoresModel -> getJugadores();
             $equipos = $this -> equiposModel -> getEquipos();
+            $session = $this -> authHelper -> isLoggedIn();
             foreach ($equipos as $equipo) {
                 $mapEquipos[$equipo -> id_equipo] = "$equipo->nombre_equipo";
             };
-            $this -> jugadoresView -> renderHome($jugadores, $equipos, $mapEquipos);
+            $this -> jugadoresView -> renderHome($jugadores, $mapEquipos, $session);
         }
 
-        function createJugador() {
-            $this -> jugadoresModel -> insertJugador($_POST['nombre'], $_POST['nro_camiseta'], $_POST['rol'], $_POST['equipos']);
+        function createJugador(){
+            $this -> authHelper -> checkLoggedIn();
+            if(!empty($_POST['nombre']) && !empty($_POST['nro_camiseta']) && !empty($_POST['rol'])){
+                $this -> jugadoresModel -> insertJugador($_POST['nombre'], $_POST['nro_camiseta'], $_POST['rol'], $_POST['equipos']);
+                $this -> jugadoresView -> relocateHome();
+            }else{
+                $this -> jugadoresView -> relocateJugadores();
+            }
+        }
+
+        function updateJugador(){
+            $this -> authHelper -> checkLoggedIn();
+            $jugador = $this -> jugadoresModel -> getJugador($_POST['jugadores']);
+            // Si no se llena algun campo se deja el que esta actualmente
+            if (empty($_POST['nombre'])) {
+                $_POST['nombre'] = $jugador -> nombre_jugador;
+            }
+            if (empty($_POST['nro_camiseta'])) {
+                $_POST['nro_camiseta'] = $jugador -> nro_camiseta;
+            }
+            if (empty($_POST['rol'])) {
+                $_POST['rol'] = $jugador -> rol;
+            }
+            $this -> jugadoresModel -> updateJugador($_POST['nombre'], $_POST['nro_camiseta'], $_POST['rol'], $_POST['equipos'], $_POST['jugadores']);
+            $this -> jugadoresView -> relocateHome();
+        }
+
+        function deleteJugador($id){
+            $this -> authHelper -> checkLoggedIn();
+            $this -> jugadoresModel -> deleteJugador($id);
             $this -> jugadoresView -> relocateHome();
         }
 
         function showEquipos(){
             $equipos = $this -> equiposModel -> getEquipos();
-            $this -> equiposView -> renderEquipos($equipos);
+            $session = $this -> authHelper -> isLoggedIn();
+            $this -> equiposView -> renderEquipos($equipos, $session);
         }
 
         function showEquipoInfo($id){
             $equipo = $this -> equiposModel -> getEquipo($id);
             $jugadores = $this -> jugadoresModel -> getJugadorEquipo($id);
-            $this -> equiposView -> renderEquipoInfo($equipo, $jugadores);
+            $session = $this -> authHelper -> isLoggedIn();
+            $this -> equiposView -> renderEquipoInfo($equipo, $jugadores, $session);
         }
 
         function showJugadores(){
             $jugadores = $this -> jugadoresModel -> getJugadores();
-            $this -> jugadoresView -> renderJugadores($jugadores);
+            $equipos = $this -> equiposModel -> getEquipos();
+            foreach ($equipos as $equipo) {
+                $mapEquipos[$equipo -> id_equipo] = "$equipo->nombre_equipo";
+            };
+            $session = $this -> authHelper -> isLoggedIn();
+            $this -> jugadoresView -> renderJugadores($jugadores, $equipos, $mapEquipos, $session);
         }
 
         function showJugadorInfo($id){
             $jugador = $this -> jugadoresModel -> getJugador($id);
-            $this -> jugadoresView -> renderJugadorInfo($jugador);
+            $equipo = $this -> equiposModel -> getEquipo($jugador->id_equipo_fk);
+            $session = $this -> authHelper -> isLoggedIn();
+            $this -> jugadoresView -> renderJugadorInfo($jugador, $equipo, $session);
         }
     };

@@ -27,7 +27,11 @@
               <a class="nav-link" href="players-list">Jugadores</a>
             </li>
           </ul>
-          <a href="login" class="btn btn-outline-light me-4">Log In</a>
+          {if $session}
+            <a href="logout" class="btn btn-outline-light me-4">Log Out</a>
+          {else}  
+            <a href="login" class="btn btn-outline-light me-4">Log In</a>
+          {/if}
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>
