@@ -20,7 +20,7 @@ class JugadoresView{
     }
 
     function relocateJugadores(){
-        header("Location:".BASE_URL."playersList");
+        header("Location:".BASE_URL."jugadores");
     }
 
     function renderJugadores($jugadores, $equipos, $mapEquipos, $session){

@@ -23,6 +23,6 @@ class EquiposView{
     }
 
     function relocateEquipos(){
-        header("Location:".BASE_URL."teamsList");
+        header("Location:".BASE_URL."equipos");
     }
 };

@@ -10,6 +10,9 @@
             <li class="list-group-item">Posicion: {$jugador -> rol}</li>
             <li class="list-group-item">Equipo: {$equipo -> nombre_equipo}</li>
         </ul>
+        <div class="card-body">
+            <a href="jugadores" class="card-link">Ir a Jugadores</a>
+        </div>
     </div>
 </div>
 

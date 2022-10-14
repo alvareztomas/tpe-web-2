@@ -21,22 +21,21 @@
         <div class="navbar-collapse collapse" id="navbarColor01" style="">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="teamsList">Equipos</a>
+              <a class="nav-link" href="home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="playersList">Jugadores</a>
+              <a class="nav-link" href="equipos">Equipos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="jugadores">Jugadores</a>
             </li>
           </ul>
           {if $session}
-            <a href="register" class="btn btn-outline-light me-4">Register</a>
+            <a href="registro" class="btn btn-outline-light me-4">Register</a>
             <a href="logout" class="btn btn-outline-light me-4">Log Out</a>
           {else}  
             <a href="login" class="btn btn-outline-light me-4">Log In</a>
           {/if}
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>

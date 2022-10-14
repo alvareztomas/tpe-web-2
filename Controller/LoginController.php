@@ -16,7 +16,11 @@
 
         function showLogin(){
             $session = $this -> authHelper -> isLoggedIn();
-            $this -> view -> renderLogin($session);
+            if(!$session){
+                $this -> view -> renderLogin($session);
+            }else{
+                $this -> view -> renderHome();
+            }
         }
 
         function logout(){
@@ -25,10 +29,10 @@
             $this -> view -> renderLogin($session, "Sesion finalizada");
         }
 
-        function showRegister(){
+        function showRegistro(){
             $this -> authHelper -> checkLoggedIn();
             $session = $this -> authHelper -> isLoggedIn();
-            $this -> view -> renderRegister($session);
+            $this -> view -> renderRegistro($session);
         }
 
         function register(){
@@ -38,10 +42,15 @@
                 $email = $_POST['email'];
                 $pass = $_POST['password'];
                 $password = password_hash($pass, PASSWORD_BCRYPT);
-                $this -> model -> addUser($email, $password);
-                $this -> view -> renderRegister($session, "Registro exitoso!");
+                $user = $this -> model -> getUser($email);
+                if (!$user) {
+                    $this -> model -> addUser($email, $password);
+                    $this -> view -> renderRegistro($session, "Registro exitoso!");
+                }else{
+                    $this -> view -> relocateRegistro();
+                }
             }else{
-                $this -> view -> relocateRegister();
+                $this -> view -> relocateRegistro();
             }
         }
 
@@ -56,10 +65,10 @@
                     $_SESSION["email"] = $email;
                     $this -> view -> renderHome();
                 }else{
-                    $this -> view -> renderLogin("Acceso denegado");
+                    $this -> view -> relocateLogin();
                 }
             }else{
-                $this -> view -> renderHome();
+                $this -> view -> relocateLogin();
             }
         }
     };

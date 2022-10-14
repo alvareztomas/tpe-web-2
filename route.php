@@ -19,29 +19,37 @@
         case 'home':
             $jugadoresController -> showHome();
             break;
-        case 'createJugador':
+        case 'crearJugador':
             $jugadoresController -> createJugador();
             break;
-        case 'updateJugador':
+        case 'modificarJugador':
             $jugadoresController -> updateJugador();
             break;
-        case 'createTeam':
-            $jugadoresController -> createTeam();
+        case 'eliminarJugador':
+            $jugadoresController -> deleteJugador();
             break;
-        case 'modifyDeleteTeam':
-            $jugadoresController -> modifyOrDeleteTeam();
+        case 'crearEquipo':
+            $jugadoresController -> createEquipo();
             break;
-        case 'teamsList':
-            $jugadoresController -> showEquipos();
+        case 'modificarEquipo':
+            $jugadoresController -> modificarEquipo();
+            break;
+        case 'eliminarEquipo':
+            $jugadoresController -> eliminarEquipo();
             break;
         case 'equipos':
-            $jugadoresController -> showEquipoInfo($params[1]);
-            break;
-        case 'playersList':
-            $jugadoresController -> showJugadores();
+            if (isset($params[1])) {
+                $jugadoresController -> showEquipoInfo($params[1]);
+            }else{
+                $jugadoresController -> showEquipos();
+            }
             break;
         case 'jugadores':
-            $jugadoresController -> showJugadorInfo($params[1]);
+            if(isset($params[1])){
+                $jugadoresController -> showJugadorInfo($params[1]);
+            }else{
+                $jugadoresController -> showJugadores();
+            }
             break;
         case 'login':
             $loginController -> showLogin();
@@ -52,13 +60,10 @@
         case 'verify':
             $loginController -> verifyLogin();
             break;
-        case 'delete':
-            $jugadoresController -> deleteJugador($params[1]);
+        case 'registro':
+            $loginController -> showRegistro();
             break;
-        case 'register':
-            $loginController -> showRegister();
-            break;
-        case 'addUser':
+        case 'agregarUsuario':
             $loginController -> register();
             break;
         default:

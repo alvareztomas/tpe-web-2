@@ -13,7 +13,7 @@
             {/foreach}
         </ul>
         <div class="card-body">
-            <a href="home" class="card-link">Go home</a>
+            <a href="equipos" class="card-link">Ir a Equipos</a>
         </div>
     </div>
 </div>

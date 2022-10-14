@@ -11,7 +11,7 @@
 {if $session}
     <div class="container d-flex align-items-center">
         <h6 class="me-3">Agregar jugador:</h6>
-        <form action="createJugador" method="post">
+        <form action="crearJugador" method="post">
             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
             <input type="number" name="nro_camiseta" id="nro_camiseta" placeholder="Camiseta Nro">
             <input type="text" name="rol" id="rol" placeholder="Posicion">
@@ -25,7 +25,7 @@
     </div>
     <div class="container d-flex mt-3 align-items-center">
         <h6 class="me-3">Modificar jugador:</h6>
-        <form action="updateJugador" method="post">
+        <form action="modificarJugador" method="post">
             <select name="jugadores" id="jugadores">
                 {foreach from=$jugadores  item=$jugador} 
                     <option value="{$jugador -> id_jugador}">{$jugador -> nombre_jugador}</option>
@@ -40,6 +40,17 @@
                 {/foreach}
             </select>
             <input type="submit" value="Modificar" class="btn btn-dark">
+        </form>
+    </div>
+    <div class="container d-flex mt-3 align-items-center">
+        <h6 class="me-3">Eliminar jugador:</h6>
+        <form action="eliminarJugador" method="post">
+            <select name="jugadores" id="jugadores">
+                {foreach from=$jugadores  item=$jugador} 
+                    <option value="{$jugador -> id_jugador}">{$jugador -> nombre_jugador}</option>
+                {/foreach}
+            </select>
+            <input type="submit" value="Eliminar" class="btn btn-dark">
         </form>
     </div>
 {/if}
