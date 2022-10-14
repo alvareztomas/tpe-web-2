@@ -18,7 +18,7 @@
                 <td>{$jugador -> rol}</td>
                 <td><a href="equipos/{$jugador -> id_equipo_fk}">{$mapEquipos[$jugador -> id_equipo_fk]}</a></td>
                 {if $session} 
-                    <td><a class="btn btn-danger" href="delete/{$jugador -> id_jugador}">Borrar</a></td>
+                    <td><a class="btn btn-danger" href="delete/{$jugador -> id_jugador}">Borrar Jugador</a></td>
                 {/if}
             </tr>
         {/foreach}

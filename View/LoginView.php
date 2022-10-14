@@ -18,4 +18,14 @@
             header("Location:".BASE_URL."home");
         }
 
+        function relocateRegister(){
+            header("Location:".BASE_URL."register");
+        }
+
+        function renderRegister($session, $error = ""){
+            $this -> smarty -> assign('error', $error);
+            $this -> smarty -> assign('session', $session);
+            $this -> smarty -> display('./templates/register.tpl');
+        }
+
     };

@@ -92,4 +92,50 @@
             $session = $this -> authHelper -> isLoggedIn();
             $this -> jugadoresView -> renderJugadorInfo($jugador, $equipo, $session);
         }
+
+        function checkEquipoSinJugadores($jugadores, $id){
+            foreach ($jugadores as $jugador) {
+                if ($jugador -> id_equipo_fk == $id) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function createTeam(){
+            $this -> authHelper -> checkLoggedIn();
+            if(!empty($_POST['nombre']) && !empty($_POST['liga']) && !empty($_POST['titulos'])){
+                $this -> equiposModel -> insertEquipo($_POST['nombre'], $_POST['liga'], $_POST['titulos']);
+            }
+            $this -> equiposView -> relocateEquipos();
+        }
+
+        function modifyOrDeleteTeam(){
+            $this -> authHelper -> checkLoggedIn();
+            if ($_POST['acciones'] == "modificar") {
+                $equipo = $this -> equiposModel -> getEquipo($_POST['equipos']);
+                // Si no se llena algun campo se deja el que esta actualmente
+                if (empty($_POST['nombre'])) {
+                    $_POST['nombre'] = $equipo -> nombre_equipo;
+                }
+                if (empty($_POST['liga'])) {
+                    $_POST['liga'] = $equipo -> liga;
+                }
+                if (empty($_POST['titulos'])) {
+                    $_POST['titulos'] = $equipo -> cant_titulos;
+                }
+                $this -> equiposModel -> updateEquipo($_POST['nombre'], $_POST['liga'], $_POST['titulos'], $_POST['equipos']);
+            } else {
+                $jugadores = $this -> jugadoresModel -> getJugadores();
+                $equipos = $this -> equiposModel -> getEquipos();
+                $session = $this -> authHelper -> isLoggedIn();
+                $cantDelete = $this -> checkEquipoSinJugadores($jugadores, $_POST['equipos']);
+                if($cantDelete){
+                    $this -> equiposView -> renderEquipos($equipos, $session, "No se puede eliminar el equipo porque tiene jugadores asociados");
+                }else{
+                    $this -> equiposModel -> deleteEquipo($_POST['equipos']);
+                    $this -> equiposView -> relocateEquipos();
+                }
+            }
+        }
     };

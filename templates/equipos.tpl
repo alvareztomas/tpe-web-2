@@ -1,6 +1,6 @@
 {include file = 'header.tpl'}
 
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center mb-3">
     <h3 class="mt-3">Equipos:</h3>
     <div class="list-group lista-equipos">
         {foreach from=$equipos item=$equipo}
@@ -8,5 +8,37 @@
         {/foreach}
     </div>
 </div>
+{if $session}
+    <div class="container d-flex align-items-center mb-3">
+        <h6 class="me-3">Agregar:</h6>
+        <form action="createTeam" method="post">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+            <input type="text" name="liga" id="liga" placeholder="Liga">
+            <input type="number" name="titulos" id="titulos" placeholder="Cant Titulos">
+            <input type="submit" value="Submit" class="btn btn-dark">
+        </form>
+    </div>
+    <div class="container d-flex align-items-center mb-3">
+        <h6 class="me-3">Modificar/Borrar:</h6>
+        <form action="modifyDeleteTeam" method="post">
+            <select name="acciones" id="acciones">
+                <option value="modificar">Modificar</option>
+                <option value="borrar">Borrar</option>
+            </select>
+            <select name="equipos" id="equipos">
+                {foreach from=$equipos  item=$equipo} 
+                    <option value="{$equipo -> id_equipo}">{$equipo -> nombre_equipo}</option>
+                {/foreach}
+            </select>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+            <input type="text" name="liga" id="liga" placeholder="Liga">
+            <input type="number" name="titulos" id="titulos" placeholder="Cant Titulos">
+            <input type="submit" value="Submit" class="btn btn-dark">
+        </form>
+    </div>
+    {if $error !== ""}
+        <p class="alert alert-danger mt-3">{$error}</p>
+    {/if}
+{/if}
 
 {include file = 'footer.tpl'}

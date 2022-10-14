@@ -8,9 +8,14 @@
         }
 
         function getUser($email){
-            $query = $this -> db -> prepare('SELECT * FROM users WHERE email = ?');
-            $query -> execute([$email]);
-            return $query -> fetch(PDO::FETCH_OBJ);
+            $sentence = $this -> db -> prepare('SELECT * FROM users WHERE email = ?');
+            $sentence -> execute([$email]);
+            return $sentence -> fetch(PDO::FETCH_OBJ);
+        }
+
+        function addUser($email, $password){
+            $sentence = $this -> db -> prepare("INSERT INTO users(email, password) VALUES(?, ?)");
+            $sentence -> execute([$email, $password]);
         }
 
     };

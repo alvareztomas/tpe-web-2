@@ -19,19 +19,25 @@
         case 'home':
             $jugadoresController -> showHome();
             break;
-        case 'create-jugador':
+        case 'createJugador':
             $jugadoresController -> createJugador();
             break;
-        case 'update-jugador':
+        case 'updateJugador':
             $jugadoresController -> updateJugador();
             break;
-        case 'teams-list':
+        case 'createTeam':
+            $jugadoresController -> createTeam();
+            break;
+        case 'modifyDeleteTeam':
+            $jugadoresController -> modifyOrDeleteTeam();
+            break;
+        case 'teamsList':
             $jugadoresController -> showEquipos();
             break;
         case 'equipos':
             $jugadoresController -> showEquipoInfo($params[1]);
             break;
-        case 'players-list':
+        case 'playersList':
             $jugadoresController -> showJugadores();
             break;
         case 'jugadores':
@@ -48,6 +54,12 @@
             break;
         case 'delete':
             $jugadoresController -> deleteJugador($params[1]);
+            break;
+        case 'register':
+            $loginController -> showRegister();
+            break;
+        case 'addUser':
+            $loginController -> register();
             break;
         default:
             echo('404 Page not found!');
